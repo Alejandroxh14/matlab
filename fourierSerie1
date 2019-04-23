@@ -1,0 +1,27 @@
+% Serie de Fourier de una señal periódica
+% Author: Alejandro Herrera
+% Date: 20190422
+% Description:
+% Document Name: fserie1.m
+
+clear;
+N=5;
+x=[];
+for n1=0:N-1
+    x(n1+1) = sin(2*pi/N*(n1));
+end
+x;
+N2=15;
+for i=0:N2-1
+    sum = 0;
+    for k=0:N-1
+        sum= sum + 1/N*x(k+1)*exp(-1j*2*pi/N*k*i);
+    end
+    a(i+1)=sum;
+end
+
+stem(imag(a),'filled')
+xlabel('n')
+ylabel('x[n]')
+axis([0 N2+1 -1 1])
+title('Coeficiente de Fourier para sin(2*pi/N*n)')
